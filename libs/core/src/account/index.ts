@@ -1,0 +1,1 @@
+export {IBaseAccount, IAccount} from "./account.interface";
