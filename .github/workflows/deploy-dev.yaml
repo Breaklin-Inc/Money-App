@@ -4,12 +4,29 @@ on:
   push:
     branches:
       - main
-
+secrets: &secrets
+  github-pat: ${{NODE_AUTH_TOKEN}}
 jobs:
+  version:
+      name: Set version
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout
+
+        - name: Setup Node
+          uses: actions/setup-node
+          with:
+            node-version: 20
+
+        - name: Install pnpm
+          run: npm install -g pnpm
+
   deploy-libs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy core
+      - uses:
   build:
     runs-on: ubuntu-latest
     steps:

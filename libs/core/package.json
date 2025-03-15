@@ -1,15 +1,14 @@
 {
-  "name": "core",
-  "version": "1.0.0",
+  "name": "@Breaklin-Inc/core",
+  "version": "1.0.0-v5",
   "description": "",
   "main": "dist/index",
   "files": ["dist"],
   "scripts": {
     "build": "pnpm run clean && pnpm run compile",
-    "clean": "rimraf ./dist",
+    "clean": "rm -rf ./dist",
     "prepublish": "pnpm run build",
-    "compile": "tsc",
-    "publish": "pnpm run prepublish && pnpm publish --no-git-checks"
+    "compile": "tsc"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
