@@ -1,1 +1,1 @@
-export {IUser} from "./user.interface";
+export {IUser, IBaseUser} from "./user.interface";
