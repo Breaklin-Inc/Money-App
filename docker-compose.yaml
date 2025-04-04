@@ -15,7 +15,7 @@ services:
 
   app:
     build:
-      context: apps/money_tracker
+      context: apps/api
       dockerfile: apps/money_tracker/Dockerfile
     depends_on:
       - db

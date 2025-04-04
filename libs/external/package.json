@@ -1,6 +1,6 @@
 {
   "name": "@Breaklin-Inc/external",
-  "version": "1.0.0-v2",
+  "version": "1.0.0-v3",
   "description": "",
   "main": "dist/index",
   "files": [
@@ -16,12 +16,14 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "peerDependencies": {
-    "@Breaklin-Inc/core": "workspace:latest"
+    "@Breaklin-Inc/core": "workspace:latest",
+    "@Breaklin-Inc/eslint-config": "workspace:latest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^9.23.0",
     "typescript": "^5.1.3"
   },
   "packageManager": "pnpm@10.6.1",

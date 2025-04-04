@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:watch:local": "dotenv -e .env.local -- pnpm run --filter ./apps/money_tracker start:dev"
+    "start:watch:local": "dotenv -e .env.local -- pnpm run --filter apps/api start:dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.1.3",
-    "dotenv-cli": "7.4.2"
+    "dotenv-cli": "7.4.2",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@Breaklin-Inc/eslint-config": "1.0.0-v1",
+    "eslint": "^8.57.1"
   }
 }
