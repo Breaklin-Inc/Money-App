@@ -4,7 +4,7 @@ FROM node:20.9.0 as base
 RUN npm install -g pnpm
 
 # Set working directory
-WORKDIR /usr/src/app/apps/api
+WORKDIR /usr/src/app
 
 # Copy package files and install dependencies
 COPY ./apps/api /usr/src/app/apps/api
