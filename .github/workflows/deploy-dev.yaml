@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-secrets: &secrets
-  github-pat: ${{NODE_AUTH_TOKEN}}
+
 jobs:
   version:
     name: Set version
@@ -15,7 +14,7 @@ jobs:
         uses: actions/checkout
 
       - name: Setup Node
-        uses: actions/setup-node
+        uses: actions/setup-node@v3
         with:
           node-version: 20
 
@@ -38,7 +37,7 @@ jobs:
         name: Set up Node.js
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install pnpm
         run: npm i -g pnpm
@@ -52,7 +51,7 @@ jobs:
           echo "${{secrets.HEROKU_API_KEY}}"
           | docker login --username=_ --password-stdin registry.heroku.com
       - name: Build Docker image for Heroku
-        run: docker build -t registry.heroku.com/${{vars.HEROKU_APP_NAME}}/web
+        run: docker build -t registry.heroku.com/${{vars.HEROKU_APP_NAME}}/web .
 
       - name: Push image to Heroku registry
         run: docker push registry.heroku.com/${{vars.HEROKU_APP_NAME}}/web
