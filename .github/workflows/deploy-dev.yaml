@@ -32,6 +32,8 @@ jobs:
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
       - uses: actions/checkout@v2
+        with:
+          path: ./apps/api
 
 
         name: Set up Node.js
