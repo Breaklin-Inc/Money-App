@@ -22,11 +22,6 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-  deploy-libs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy core
-      - uses:
   build:
     runs-on: ubuntu-latest
     defaults:
