@@ -8,19 +8,19 @@ secrets: &secrets
   github-pat: ${{NODE_AUTH_TOKEN}}
 jobs:
   version:
-      name: Set version
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout
+    name: Set version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout
 
-        - name: Setup Node
-          uses: actions/setup-node
-          with:
-            node-version: 20
+      - name: Setup Node
+        uses: actions/setup-node
+        with:
+          node-version: 20
 
-        - name: Install pnpm
-          run: npm install -g pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
 
   deploy-libs:
     runs-on: ubuntu-latest
@@ -29,6 +29,10 @@ jobs:
       - uses:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory:
+          ./apps/api
     steps:
       - name: Install Heroku CLI
         run: |
@@ -41,25 +45,42 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install pnpm
+        run: npm i -g pnpm
+
       - name: Install deps
         run: |
-          npm install
+          pnpm install
 
-      - name: Build app
+      - name: Login to Heroku Container Registry
         run: |
-          npm run build
+          echo "${{secrets.HEROKU_API_KEY}}"
+          | docker login --username=_ --password-stdin registry.heroku.com
+      - name: Build Docker image for Heroku
+        run: docker build -t registry.heroku.com/${{vars.HEROKU_APP_NAME}}/web
 
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{vars.HEROKU_APP_NAME}}
-          heroku_email: ${{vars.HEROKU_EMAIL}}
+      - name: Push image to Heroku registry
+        run: docker push registry.heroku.com/${{vars.HEROKU_APP_NAME}}/web
+
+      - name: Release image on Heroku
+        run: |
+          IMAGE_ID=$(docker inspect registry.heroku.com/${{vars.HEROKU_APP_NAME}}/web --format={{.Id}})
+          curl -n -X PATCH https://api.heroku.com/apps/${{vars.HEROKU_APP_NAME}}/formation \
+          -d '{
+            "updates":[{
+                "type": "web",
+                "docker_image": "'"$IMAGE_ID"'"
+              }]
+          }' \
+          -H "Content-Type: application/json" \
+          -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
+          -H "Authorization: Bearer ${{ secrets.HEROKU_API_KEY }}"
+
       - name: Set Heroku environment variables
         run: |
-            heroku config:set DATABASE_HOST=${{ secrets.DATABASE_HOST }} \
-            DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} \
-            DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} \
-            DATABASE_NAME=${{ secrets.DATABASE_NAME }} \
-            ENV=prod \
-            --app ${{ vars.HEROKU_APP_NAME }}
-          # usedocker: true
+          heroku config:set DATABASE_HOST=${{ secrets.DATABASE_HOST }} \
+          DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} \
+          DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} \
+          DATABASE_NAME=${{ secrets.DATABASE_NAME }} \
+          ENV=prod \
+          --app ${{ vars.HEROKU_APP_NAME }}

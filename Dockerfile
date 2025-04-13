@@ -8,12 +8,12 @@ WORKDIR /usr/src/app
 
 # Copy package files and install dependencies
 COPY pnpm-lock.yaml ./
-COPY package.json package-lock.json ./
+COPY apps/api/package.json package-lock.json ./
 # Install dependencies using pnpm
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --no-frozen-lockfile
 
 # Copy the rest of the application
-COPY . .
+COPY apps/api .
 
 # Install nodemon globally for watch mode
 RUN npm install -g nodemon

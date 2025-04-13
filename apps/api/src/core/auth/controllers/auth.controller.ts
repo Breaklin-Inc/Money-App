@@ -4,7 +4,6 @@ import {
   UseGuards,
   Body,
   UseInterceptors,
-  Req,
 } from '@nestjs/common';
 import { AuthService } from '../services';
 import { LocalUser } from '../decorators';
@@ -15,7 +14,6 @@ import { ILogInReturn } from '../services/types';
 import { LogInResponseInterceptor } from '../interceptors';
 import { IRefreshTokenBodyRes } from '@Breaklin-Inc/external';
 import { Transactional } from 'typeorm-transactional';
-import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {

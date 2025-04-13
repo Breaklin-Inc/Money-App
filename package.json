@@ -12,10 +12,12 @@
   "license": "ISC",
   "devDependencies": {
     "dotenv-cli": "7.4.2",
+    "lint-staged": "^15.5.0",
     "typescript": "^5.1.3"
   },
   "dependencies": {
     "@Breaklin-Inc/eslint-config": "1.0.0-v1",
-    "eslint": "^8.57.1"
+    "eslint": "^8.57.1",
+    "husky": "^9.1.7"
   }
 }
