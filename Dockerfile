@@ -7,7 +7,7 @@ RUN npm install -g pnpm
 WORKDIR /usr/src/app/apps/api
 
 # Copy package files and install dependencies
-COPY . .
+COPY ./apps/api /usr/src/app/apps/api
 # Install dependencies using pnpm
 RUN pnpm install --no-frozen-lockfile
 
