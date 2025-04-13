@@ -4,16 +4,12 @@ FROM node:20.9.0 as base
 RUN npm install -g pnpm
 
 # Set working directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/apps/api
 
 # Copy package files and install dependencies
-COPY pnpm-lock.yaml ./
-COPY apps/api/package.json package-lock.json ./
+COPY . .
 # Install dependencies using pnpm
 RUN pnpm install --no-frozen-lockfile
-
-# Copy the rest of the application
-COPY apps/api .
 
 # Install nodemon globally for watch mode
 RUN npm install -g nodemon
