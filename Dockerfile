@@ -8,6 +8,8 @@ WORKDIR /usr/src/app
 
 # Copy package files and install dependencies
 COPY . .
+# Provide github secret
+RUN echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
 # Install dependencies using pnpm
 RUN pnpm install
 
