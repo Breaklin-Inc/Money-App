@@ -20,6 +20,8 @@ RUN pnpm run build
 
 FROM alpine:3.19
 
+RUN apk add nodejs
+
 WORKDIR /usr/src/app
 
 COPY --from=base /usr/src/app/apps/api ./apps/api
