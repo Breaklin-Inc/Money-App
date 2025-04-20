@@ -1,5 +1,7 @@
 # Use full Node.js image instead of Alpine to avoid missing dependencies
 FROM node:20.9.0 as base
+ARG NODE_AUTH_TOKEN
+ENV NODE_AUTH_TOKEN=$NODE_AUTH_TOKEN
 
 RUN npm install -g pnpm
 
