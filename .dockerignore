@@ -6,7 +6,6 @@
 
 **/.classpath
 **/.dockerignore
-**/.env
 **/.git
 apps/api/.idea/.gitignore
 **/.project
