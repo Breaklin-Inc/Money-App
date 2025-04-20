@@ -23,7 +23,7 @@ COPY --from=base /usr/src/app/apps/api/node_modules ./apps/api/node_modules
 COPY --from=base /usr/src/app/node_modules ./node_modules
 
 #COPY .env .env
-#COPY .env ./apps/api/.env
+COPY ./apps/api/.env ./apps/api/.env
 
 
 # Expose port
