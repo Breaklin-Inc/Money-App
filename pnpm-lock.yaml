@@ -83,11 +83,11 @@ importers:
         version: 0.5.0(reflect-metadata@0.2.2)(typeorm@0.3.22(pg@8.14.1)(reflect-metadata@0.2.2)(ts-node@10.9.2(@types/node@20.17.30)(typescript@5.8.3)))
     devDependencies:
       '@Breaklin-Inc/core':
-        specifier: workspace:latest
-        version: link:../../libs/core
+        specifier: 1.0.0-v8
+        version: 1.0.0-v8
       '@Breaklin-Inc/external':
-        specifier: workspace:latest
-        version: link:../../libs/external
+        specifier: 1.0.0-v4
+        version: 1.0.0-v4(@Breaklin-Inc/core@1.0.0-v8)(@Breaklin-Inc/eslint-config@1.0.0-v4(@typescript-eslint/eslint-plugin@8.30.1(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1))
       '@nestjs/passport':
         specifier: ^11.0.5
         version: 11.0.5(@nestjs/common@10.4.17(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(passport@0.7.0)
@@ -218,12 +218,28 @@ importers:
 
 packages:
 
+  '@Breaklin-Inc/core@1.0.0-v8':
+    resolution: {integrity: sha512-Uo1oQ8BDI9DEZ42UYO/1zOZBvXyZwv2extl8iAvfiNQDYft0LfZ/blu4WW4s9Q8WRdoIxkFJ1kD3bm9YuhK2Fg==, tarball: https://npm.pkg.github.com/download/@Breaklin-Inc/core/1.0.0-v8/44f8b9e1507e47024ef7dcd0c728780bf322c039}
+
   '@Breaklin-Inc/eslint-config@1.0.0-v1':
     resolution: {integrity: sha512-E0UjdhnuBta9w9cpTgkDLrjVOqk3GWPgv8DbnqMyTDvgzfYXnqxXUr/+C3wiVvl0GvN4j939ikBVMrndp2nNNw==, tarball: https://npm.pkg.github.com/download/@Breaklin-Inc/eslint-config/1.0.0-v1/5d8d844b34a5ca6d10a2f2da322b9641d6c03d90}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.0.0
       '@typescript-eslint/parser': ^5.0.0
       eslint: ^8.0.0
+
+  '@Breaklin-Inc/eslint-config@1.0.0-v4':
+    resolution: {integrity: sha512-/gR0xuuJ3UG8OUgw2XG83jTaijIz3xJNaWMiJUf4Bm+RWqBWKLJOdeEvBdEnxQSqHJ+DGYiXoQHKl34LiLLNgw==, tarball: https://npm.pkg.github.com/download/@Breaklin-Inc/eslint-config/1.0.0-v4/938ef49ea6530f99b8ec75e0fb35264a06af2ae3}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^5.0.0
+      '@typescript-eslint/parser': ^5.0.0
+      eslint: ^8.0.0
+
+  '@Breaklin-Inc/external@1.0.0-v4':
+    resolution: {integrity: sha512-MnoPDKhaq5Rq2pUrpQANnJtFTiFfolyC5qQzvccQL8hbS9cqAotnCOK4VkVJaVOv4ZvcbxhhST1K+WCsmXAS8w==, tarball: https://npm.pkg.github.com/download/@Breaklin-Inc/external/1.0.0-v4/85eb79da314f4716ebe27190a502ea5076abea8c}
+    peerDependencies:
+      '@Breaklin-Inc/core': 1.0.0-v8latest
+      '@Breaklin-Inc/eslint-config': 1.0.0-v4latest
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -3627,11 +3643,27 @@ packages:
 
 snapshots:
 
+  '@Breaklin-Inc/core@1.0.0-v8': {}
+
   '@Breaklin-Inc/eslint-config@1.0.0-v1(@typescript-eslint/eslint-plugin@8.30.1(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)':
     dependencies:
       '@typescript-eslint/eslint-plugin': 8.30.1(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
       '@typescript-eslint/parser': 8.30.1(eslint@8.57.1)(typescript@5.8.3)
       eslint: 8.57.1
+
+  '@Breaklin-Inc/eslint-config@1.0.0-v4(@typescript-eslint/eslint-plugin@8.30.1(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)':
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.30.1(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
+      '@typescript-eslint/parser': 8.30.1(eslint@8.57.1)(typescript@5.8.3)
+      eslint: 8.57.1
+
+  '@Breaklin-Inc/external@1.0.0-v4(@Breaklin-Inc/core@1.0.0-v8)(@Breaklin-Inc/eslint-config@1.0.0-v4(@typescript-eslint/eslint-plugin@8.30.1(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1))':
+    dependencies:
+      '@Breaklin-Inc/core': 1.0.0-v8
+      '@Breaklin-Inc/eslint-config': 1.0.0-v4(@typescript-eslint/eslint-plugin@8.30.1(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(@typescript-eslint/parser@8.30.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
+      axios: 1.8.4
+    transitivePeerDependencies:
+      - debug
 
   '@ampproject/remapping@2.3.0':
     dependencies:
