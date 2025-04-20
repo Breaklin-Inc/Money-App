@@ -25,7 +25,7 @@
   "dependencies": {
     "@nestjs/cli": "^10.0.0",
     "@nestjs/common": "^10.0.0",
-    "@nestjs/config": "3.3.0",
+    "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^11.0.0",
     "@nestjs/platform-express": "^10.0.0",
@@ -34,7 +34,7 @@
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
-    "dotenv-cli": "7.4.2",
+    "dotenv-cli": "^7.4.2",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
@@ -42,8 +42,8 @@
     "typeorm-transactional": "^0.5.0"
   },
   "devDependencies": {
-    "@Breaklin-Inc/core": "1.0.0-v8",
-    "@Breaklin-Inc/external": "1.0.0-v4",
+    "@Breaklin-Inc/core": "^1.0.0-v8",
+    "@Breaklin-Inc/external": "^1.0.0-v4",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
