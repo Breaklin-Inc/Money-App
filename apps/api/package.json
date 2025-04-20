@@ -42,8 +42,8 @@
     "typeorm-transactional": "^0.5.0"
   },
   "devDependencies": {
-    "@Breaklin-Inc/core": "workspace:latest",
-    "@Breaklin-Inc/external": "workspace:latest",
+    "@Breaklin-Inc/core": "1.0.0-v8",
+    "@Breaklin-Inc/external": "1.0.0-v4",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
