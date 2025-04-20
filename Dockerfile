@@ -1,14 +1,5 @@
 # Use full Node.js image instead of Alpine to avoid missing dependencies
 FROM node:20.9.0 as base
-# Install dependencies for canvas node-gyp build
-#RUN apk add --update --no-cache \
-#    make \
-#    g++ \
-#    jpeg-dev \
-#    cairo-dev \
-#    giflib-dev \
-#    pango-dev \
-#    && rm -rf /var/cache/apk/* \
 
 RUN npm install -g pnpm
 
