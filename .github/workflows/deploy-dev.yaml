@@ -39,17 +39,9 @@ jobs:
         with:
           node-version: 20
 
-#      - name: Install pnpm
-#        run: npm i -g pnpm
-#
-#      - name: Install deps
-#        run: |
-#          pnpm install
 
       - name: Login to Heroku Container Registry
-        run: |
-          echo "${{secrets.HEROKU_API_KEY}}"
-          | docker login --username=_ --password-stdin registry.heroku.com
+        run: docker login --username=_ --password-stdin registry.heroku.com
       - name: Build Docker image for Heroku
         run: docker build -t registry.heroku.com/${{vars.HEROKU_APP_NAME}}/web .
 
