@@ -39,4 +39,4 @@ EXPOSE 3002
 ENV NODE_ENV=development
 
 # Start the application in watch mode
-CMD ["node", "apps/api/dist/apps/api/main.js"]
+CMD ["node", "/apps/api/main.js"]
