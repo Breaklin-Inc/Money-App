@@ -35,6 +35,7 @@ jobs:
           docker build \
             --build-arg NODE_AUTH_TOKEN=$NODE_AUTH_TOKEN \
             --tag ghcr.io/${{ github.actor }}/store:latest \
+            .
           docker push ghcr.io/${{ github.actor }}/store:latest
 
       - name: Set up SSH
