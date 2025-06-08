@@ -28,15 +28,13 @@ COPY --from=base /usr/src/app/apps/api ./apps/api
 COPY --from=base /usr/src/app/apps/api/node_modules ./apps/api/node_modules
 COPY --from=base /usr/src/app/node_modules ./node_modules
 
-#COPY .env .env
-#COPY ./apps/api/.env ./apps/api/.env
-
-
 # Expose port
 EXPOSE 3002
 
 # Set environment variable
 ENV NODE_ENV=development
 
+RUN ls -alh /usr/src/app/apps/api/dist
+
 # Start the application in watch mode
-CMD ["node", "/usr/src/app/apps/api/dist/apps/api/src/main.js"]
+CMD ["node", "/apps/api/dist/main.js"]
