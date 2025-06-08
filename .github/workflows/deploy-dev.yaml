@@ -30,7 +30,8 @@ jobs:
           password: ${{secrets.GITHUB_TOKEN}}
       - name: Build image
         run: |
-          docker build . --tag ghcr.io/${{github.actor}}/store:latest docker push ghcr.io/${{github.actor}}/store:latest
+          docker build . --tag ghcr.io/${{github.actor}}/store:latest
+          docker push ghcr.io/${{github.actor}}/store:latest
 
       - name: Set up SSH
         env:
