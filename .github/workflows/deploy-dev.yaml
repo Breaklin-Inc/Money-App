@@ -50,7 +50,7 @@ jobs:
       - name: SSH and deploy
         run: |
           ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@${{secrets.EC2_HOST}} << 'EOF'
-            echo "${{secrets.NODE_AUTH_TOKEN}}" | docker login ghcr.io --u ${{github.actor}} --password-stdin
+            echo "${{secrets.NODE_AUTH_TOKEN}}" | docker login ghcr.io --username ${{github.actor}} --password-stdin
             docker pull ghcr.io/${{github.actor}}/store:latest
             docker stop store || true
             docker rm store || true
