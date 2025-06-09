@@ -20,6 +20,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      packages: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -37,9 +38,9 @@ jobs:
         run: |
           docker build \
             --build-arg NODE_AUTH_TOKEN=$NODE_AUTH_TOKEN \
-            --tag ghcr.io/${{ github.actor }}/store:latest \
+            --tag ghcr.io/${{ vars.ORGANIZATION_NAME }}/store:latest \
             .
-          docker push ghcr.io/${{ github.actor }}/store:latest
+          docker push ghcr.io/${{ vars.ORGANIZATION_NAME }}/store:latest
 
       - name: Set up SSH
         env:
@@ -48,11 +49,16 @@ jobs:
           echo "$PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
       - name: SSH and deploy
-        run: |
-          ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@${{secrets.EC2_HOST}} << 'EOF'
-            echo "${{secrets.NODE_AUTH_TOKEN}}" | sudo docker login ghcr.io --username ${{github.actor}} --password-stdin
-            sudo docker pull ghcr.io/${{github.actor}}/store:latest
-            sudo docker stop store || true
-            sudo docker rm store || true
-            sudo docker run -d --name store -p 80:3002 ghcr.io/${{github.actor}}/store:latest
-          EOF
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          ORG_NAME: ${{ vars.ORGANIZATION_NAME }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          run: |
+            ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@$EC2_HOST << EOF
+              echo "$NODE_AUTH_TOKEN" | sudo docker login ghcr.io --username $GITHUB_ACTOR --password-stdin
+              sudo docker pull ghcr.io/$ORG_NAME/store:latest
+              sudo docker stop store || true
+              sudo docker rm store || true
+              sudo docker run -d --name store -p 80:3002 ghcr.io/$ORG_NAME/store:latest
+            EOF
