@@ -54,11 +54,11 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           ORG_NAME: ${{ vars.ORGANIZATION_NAME }}
           GITHUB_ACTOR: ${{ github.actor }}
-          run: |
-            ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@$EC2_HOST << EOF
-              echo "$NODE_AUTH_TOKEN" | sudo docker login ghcr.io --username $GITHUB_ACTOR --password-stdin
-              sudo docker pull ghcr.io/$ORG_NAME/store:latest
-              sudo docker stop store || true
-              sudo docker rm store || true
-              sudo docker run -d --name store -p 80:3002 ghcr.io/$ORG_NAME/store:latest
-            EOF
+        run: |
+          ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@$EC2_HOST << EOF
+            echo "$NODE_AUTH_TOKEN" | sudo docker login ghcr.io --username $GITHUB_ACTOR --password-stdin
+            sudo docker pull ghcr.io/$ORG_NAME/store:latest
+            sudo docker stop store || true
+            sudo docker rm store || true
+            sudo docker run -d --name store -p 80:3002 ghcr.io/$ORG_NAME/store:latest
+          EOF
