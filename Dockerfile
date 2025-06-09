@@ -34,7 +34,7 @@ EXPOSE 3002
 # Set environment variable
 ENV NODE_ENV=development
 
-RUN ls -alh /usr/src/app/apps/api/dist
+RUN ls -alh /usr/src/app/apps/api/dist/main.js
 
 # Start the application in watch mode
-CMD ["node", "/apps/api/dist/main.js"]
+CMD ["node", "/usr/src/app/apps/api/dist/main.js"]
